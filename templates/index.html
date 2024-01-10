@@ -2,28 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Processing App</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
-<body>
-    <h1>Image Processing App</h1>
+<body class="bg-light">
 
-    <form action="/" method="post" enctype="multipart/form-data">
-        <label for="image">Upload Image:</label>
-        <input type="file" name="image" id="image" accept="image/*" required>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
 
-        <br>
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="text-center">Image Processing Website</h1>
+                    </div>
 
-        <label for="operation">Select Operation:</label>
-        <select name="operation" id="operation" required>
-            <option value="blur">Blur</option>
-            <option value="sharpen">Sharpen</option>
-        </select>
+                    <div class="card-body">
+                        <form action="/" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="image">Upload Image:</label>
+                                <input type="file" class="form-control-file" name="image" id="image" accept="image/*" required>
+                            </div>
 
-        <br>
+                            <div class="form-group">
+                                <label for="operation">Select Operation:</label>
+                                <select class="form-control" name="operation" id="operation" required>
+                                    <option value="blur">Blur</option>
+                                    <option value="sharpen">Sharpen</option>
+                                    <option value="water">Water Art</option>
+                                </select>
+                            </div>
 
-        <button type="submit">Process Image</button>
-    </form>
+                            <button type="submit" class="btn btn-primary btn-block">Process Image</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js (if needed) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 </body>
 </html>
