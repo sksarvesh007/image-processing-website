@@ -1,3 +1,4 @@
+import gunicorn
 from flask import Flask, render_template, request, send_file
 import cv2
 import numpy as np
@@ -6,7 +7,7 @@ from io import BytesIO
 app = Flask(__name__)
 
 def blur_image(image):
-    blurred = cv2.GaussianBlur(image, (15, 15), 0)
+    blurred = cv2.GaussianBlur(image, (25, 25), 0)
     return blurred
 
 def sharpen_image(image):
