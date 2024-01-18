@@ -34,6 +34,21 @@ def water_art(image):
     image_sharp = cv2.addWeighted(image_sharp, 1.4, gaussian_mask, -0.2, 0)
     return image_sharp
 
+def cartoon(image):
+    grey = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    grey = cv2.medianBlur(grey, 5)
+    edges = cv2.adaptiveThreshold(grey, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 9, 9)
+    color = cv2.bilateralFilter(image, 9, 250, 250)
+    cartoon = cv2.bitwise_and(color, color, mask=edges)
+    return cartoon 
+    
+def face_blur(image):
+    face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+    faces = face_cascade.detectMultiScale(image, 1.3, 5)
+    for (x,y,w,h) in faces:
+        image[y:y+h, x:x+w] = cv2.blur(image[y:y+h, x:x+w], (25,25))
+    return image
+
 def process_image(image, operation):
     if operation == 'blur':
         return blur_image(image)
@@ -41,6 +56,10 @@ def process_image(image, operation):
         return sharpen_image(image)
     elif operation == 'water':
         return water_art(image)
+    elif operation == 'cartoon':
+        return cartoon(image)
+    elif operation == 'face':
+        return face_blur(image)
     else:
         return image
     
